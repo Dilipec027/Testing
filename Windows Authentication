@@ -1,0 +1,72 @@
+public class TestDemo {
+
+	    static WebDriver driver;
+
+	    public static void main(String[] args) {
+
+	        //setup web driver
+	        System.setProperty("webdriver.chrome.driver", "path to your chromedriver.exe");
+	        driver = new ChromeDriver();
+
+	        //create new thread for interaction with windows authentication window
+	        (new Thread(new LoginWindow())).start();                
+
+	        //open your url. this will prompt you for windows authentication
+	        driver.get("your url");
+
+	        //add test scripts below ...
+	        driver.findElement(By.linkText("Home")).click();    
+	        //.....
+	        //.....
+	    }
+
+	    //inner class for Login thread    
+	    public class LoginWindow implements Runnable {
+
+	        @Override
+	        public void run() {
+	            try {
+	                login();
+	            } catch (Exception ex) {
+	                System.out.println("Error in Login Thread: " + ex.getMessage());
+	            }
+	        }
+
+	        public void login() throws Exception {
+
+	            //wait - increase this wait period if required
+	            Thread.sleep(5000);
+
+	            //create robot for keyboard operations
+	            Robot rb = new Robot();
+
+	            //Enter user name by ctrl-v
+	            StringSelection username = new StringSelection("username");
+	            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(username, null);            
+	            rb.keyPress(KeyEvent.VK_CONTROL);
+	            rb.keyPress(KeyEvent.VK_V);
+	            rb.keyRelease(KeyEvent.VK_V);
+	            rb.keyRelease(KeyEvent.VK_CONTROL);
+
+	            //tab to password entry field
+	            rb.keyPress(KeyEvent.VK_TAB);
+	            rb.keyRelease(KeyEvent.VK_TAB);
+	            Thread.sleep(2000);
+
+	            //Enter password by ctrl-v
+	            StringSelection pwd = new StringSelection("password");
+	            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(pwd, null);
+	            rb.keyPress(KeyEvent.VK_CONTROL);
+	            rb.keyPress(KeyEvent.VK_V);
+	            rb.keyRelease(KeyEvent.VK_V);
+	            rb.keyRelease(KeyEvent.VK_CONTROL);
+
+	            //press enter
+	            rb.keyPress(KeyEvent.VK_ENTER);
+	            rb.keyRelease(KeyEvent.VK_ENTER);
+
+	            //wait
+	            Thread.sleep(5000);
+	        }                        
+	    }      
+	}
