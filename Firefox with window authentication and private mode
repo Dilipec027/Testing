@@ -1,0 +1,60 @@
+package com.FLP.pageobjects;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import com.FLP.utils.BaseTest;
+
+	public class Earchieve extends BaseTest {
+
+	
+
+	 
+		public static void main(String[] args) throws InterruptedException {
+			
+			
+//			System.setProperty("webdriver.chrome.driver",
+//					System.getProperty("user.dir") + "\\resources\\webdrivers\\chromedriver.exe");     
+//			driver = new ChromeDriver();
+			System.setProperty("webdriver.gecko.driver",
+					System.getProperty("user.dir") + "\\resources\\webdrivers\\geckodriver.exe");  
+			
+//			DesiredCapabilities capabilities = DesiredCapabilities.firefox(); 
+			        
+			        DesiredCapabilities  capabilities = DesiredCapabilities.firefox();
+//			        capabilities.setCapability("browser.privatebrowsing.autostart", true); 
+			        FirefoxOptions options = new FirefoxOptions();
+			        options.addArguments("-private");			   	       
+					WebDriver driver= new FirefoxDriver(options); 
+			        
+			try {
+				Alert alert = driver.switchTo().alert();
+				alert.sendKeys("p950dlp"+Keys.TAB+"p950dlp");
+				alert.accept();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+			driver.get("https://earchive-ext-preprod.swedbank.net");
+		
+			Thread.sleep(10000);
+//			try {
+//				Alert alert = driver.switchTo().alert();
+//				alert.sendKeys("p950dlp"+Keys.TAB+"p950dlp");	
+//				alert.accept();
+//			}catch(Exception e) {
+//				e.printStackTrace();
+//			}
+			Thread.sleep(30000);
+//			driver.findElement(By.xpath("//*[@id=\"layout\"]/div/div[2]/ui-view/ui-view/swed-page/swed-page-region/div/swed-login-form/div/div/form/swed-input-container[1]")).sendKeys("1345"	);
+			
+	    	   	
+
+	    }}
+		
+
+   
+	   
