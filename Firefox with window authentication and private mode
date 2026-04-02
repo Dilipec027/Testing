@@ -33,7 +33,7 @@ import com.FLP.utils.BaseTest;
 			        
 			try {
 				Alert alert = driver.switchTo().alert();
-				alert.sendKeys("p950dlp"+Keys.TAB+"p950dlp");
+				alert.sendKeys("dlp"+Keys.TAB+"dlp");
 				alert.accept();
 			}catch(Exception e) {
 				e.printStackTrace();
@@ -43,7 +43,7 @@ import com.FLP.utils.BaseTest;
 			Thread.sleep(10000);
 //			try {
 //				Alert alert = driver.switchTo().alert();
-//				alert.sendKeys("p950dlp"+Keys.TAB+"p950dlp");	
+//				alert.sendKeys("dlp"+Keys.TAB+"dlp");	
 //				alert.accept();
 //			}catch(Exception e) {
 //				e.printStackTrace();
